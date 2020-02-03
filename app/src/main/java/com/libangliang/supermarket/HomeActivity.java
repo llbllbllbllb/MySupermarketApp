@@ -14,10 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.fragment.app.Fragment;
+
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.libangliang.supermarket.Model.Products;
 import com.libangliang.supermarket.Prevalent.Prevalent;
 import com.libangliang.supermarket.ViewHolder.ProductViewHolder;
+import com.libangliang.supermarket.ui.cart.CartFragment;
 import com.squareup.picasso.Picasso;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -48,10 +54,6 @@ public class HomeActivity extends AppCompatActivity {
     private TextView userProfileName;
     private CircleImageView userProfileImage;
 
-    private DatabaseReference productRef;
-
-    private RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
 
 
 
@@ -60,26 +62,18 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        productRef = FirebaseDatabase.getInstance().getReference().child("Products");
-
 
         Paper.init(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Home");
+//        toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
 
         MainActivity.getInstance().finish();
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -89,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_cart, R.id.nav_orders,
-                R.id.nav_categories, R.id.nav_settings)
+                R.id.nav_categories, R.id.nav_settings,R.id.nav_home)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -100,57 +94,45 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
+
         View headerView = navigationView.getHeaderView(0);
         userProfileName = headerView.findViewById(R.id.user_profile_name);
         userProfileName.setText(Prevalent.currentOnlineUser.getName());
         userProfileImage = headerView.findViewById(R.id.user_profile_image);
+        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).into(userProfileImage);
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.nav_cart);
+            }
+        });
 
-        recyclerView = findViewById(R.id.recycler_view_home);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        DisplaySelectedScreen(navController);
+
 
 
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    public void DisplaySelectedScreen(NavController navController) {
 
-        //firebase recyclerview adapter document: by Libang Liang
-        //https://firebaseopensource.com/projects/firebase/firebaseui-android/database/readme.md/
+        String fragID = "";
+        if (getIntent().hasExtra("frgToLoad")) {
+            fragID = getIntent().getExtras().getString("frgToLoad");
+            switch (fragID) {
+                case "cart":
+                    navController.navigate(R.id.nav_cart);
 
-        //retrieve products info from database and store it in Products.class
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(productRef,Products.class).build();
-
-        //then pass the options to FirebaseRecyclerAdapter
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-                holder.cardProductName.setText(model.getName());
-                holder.cardProductPrice.setText(model.getPrice()+" CAD");
-                holder.cardProductDescription.setText(model.getDescription());
-                Log.v("download URL",model.getImage());
-//                下载的URL: com.google.android.gms.tasks.zzu@fbd9960
-                Picasso.get().load(model.getImage()).into(holder.cardProductImage);
-
+                    break;
             }
-
-            @NonNull
-            @Override
-            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout,parent,false);
-                ProductViewHolder viewHolder = new ProductViewHolder(view);
-                return viewHolder;
-            }
-        };
-        //need to connect recyclerView and adapter
-        recyclerView.setAdapter(adapter);
-        adapter.startListening();
+        }
 
     }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -5,86 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Settings">
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/frag_settings_app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary">
 
 
-
-
-        <Toolbar
-            android:id="@+id/frag_settings_tool_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/frag_settings_close_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Close"
-                    android:textColor="@android:color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:layout_alignParentStart="true"
-                    />
-
-                <TextView
-                    android:id="@+id/frag_settings_update_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Update"
-                    android:textColor="@android:color/white"
-                    android:textSize="20dp"
-                    android:layout_marginRight="10dp"
-                    android:textStyle="bold"
-                    android:layout_alignParentEnd="true"
-                    />
-
-            </RelativeLayout>
-
-
-        </Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/frag_settings_profile_image"
+        android:id="@+id/settings_profile_image"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:layout_below="@+id/frag_settings_app_bar"
         android:src="@drawable/profile"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         app:civ_border_color="@color/colorPrimary"
         app:civ_border_width="3dp"
         />
 
+
     <TextView
-        android:id="@+id/frag_settings_profile_image_change_button"
+        android:id="@+id/phone_number_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change Profile Image"
-        android:layout_below="@+id/frag_settings_profile_image"
-        android:textColor="@color/colorPrimary"
-        android:textSize="15dp"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/settings_profile_image"
+        android:layout_marginLeft="35dp"
+        android:textSize="18dp"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="20dp"
+        android:text="Phone Number"
         />
 
+
     <EditText
-        android:id="@+id/frag_settings_phone_number"
+        android:id="@+id/settings_phone_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/frag_settings_profile_image_change_button"
+        android:layout_below="@+id/phone_number_text"
         android:hint="Enter New Phone Number"
-        android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:textSize="20dp"
@@ -93,13 +48,25 @@
         android:inputType="number"
         />
 
+    <TextView
+        android:id="@+id/full_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settings_phone_number"
+        android:layout_marginLeft="35dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:text="Full Name"
+        />
+
     <EditText
-        android:id="@+id/frag_settings_full_name"
+        android:id="@+id/settings_full_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/frag_settings_phone_number"
+        android:layout_below="@+id/full_name_text"
         android:hint="Enter New Full Name"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:textSize="20dp"
@@ -108,13 +75,25 @@
 
         />
 
+    <TextView
+        android:id="@+id/address_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settings_full_name"
+        android:layout_marginLeft="35dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:text="Delivery Address"
+        />
+
     <EditText
-        android:id="@+id/frag_settings_address"
+        android:id="@+id/settings_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/frag_settings_full_name"
+        android:layout_below="@+id/address_text"
         android:hint="Enter Address"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:textSize="20dp"
@@ -122,8 +101,35 @@
         android:padding="15dp"
         android:inputType="textMultiLine"
         />
+    <Button
+        android:id="@+id/settings_update_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:background="@drawable/button_solid"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_below="@+id/settings_address"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
 
+        />
 
+    <ProgressBar
+        android:id="@+id/settings_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settings_update_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:visibility="invisible"
+
+        />
 
 
 </RelativeLayout>
