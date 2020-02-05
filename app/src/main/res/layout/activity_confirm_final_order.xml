@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConfirmFinalOrderActivity">
+
+    <RelativeLayout
+        android:id="@+id/shipment_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/order_almost_done_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:tint="@color/colorPrimary"
+            android:src="@drawable/almost_done"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+
+            />
+
+        <TextView
+            android:id="@+id/confirm_final_order_txt"
+            android:layout_below="@+id/order_almost_done_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You Are Almost Done!\nPlease Confirm Your Shipment Details"
+            android:textSize="18dp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            />
+
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:id="@+id/confirm_final_order_full_name_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shipment_title"
+        android:text="Full Name"
+        android:textSize="18dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        />
+
+    <EditText
+        android:id="@+id/shipment_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirm_final_order_full_name_txt"
+        android:background="@drawable/inputs_text"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:padding="15dp"
+        android:hint="Your Name"
+
+        />
+
+    <TextView
+        android:id="@+id/confirm_final_order_phone_number_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shipment_name"
+        android:text="Phone Number"
+        android:layout_marginTop="10dp"
+        android:textSize="18dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginLeft="35dp"
+        android:textStyle="bold"
+        />
+
+    <EditText
+        android:id="@+id/shipment_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirm_final_order_phone_number_txt"
+        android:background="@drawable/inputs_text"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:inputType="number"
+        android:padding="15dp"
+        android:hint="Your Phone Number"
+
+        />
+
+    <TextView
+        android:id="@+id/confirm_final_order_home_address_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shipment_phone_number"
+        android:text="Delivery Address"
+        android:layout_marginTop="10dp"
+        android:textSize="18dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginLeft="35dp"
+        android:textStyle="bold"
+        />
+
+    <EditText
+        android:id="@+id/shipment_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirm_final_order_home_address_txt"
+        android:background="@drawable/inputs_text"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:inputType="textMultiLine"
+        android:padding="15dp"
+        android:hint="Your Home Adress"
+        />
+
+
+    <TextView
+        android:id="@+id/confirm_final_order_city_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shipment_address"
+        android:text="City"
+        android:layout_marginTop="10dp"
+        android:textSize="18dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginLeft="35dp"
+        android:textStyle="bold"
+        />
+
+
+    <EditText
+        android:id="@+id/shipment_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirm_final_order_city_txt"
+        android:background="@drawable/inputs_text"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:padding="15dp"
+        android:hint="Your City"
+        />
+
+    <Button
+        android:id="@+id/shipment_confirm_final_order_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/button_solid"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        />
+
+
+</RelativeLayout>

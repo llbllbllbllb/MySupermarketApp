@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class AdminCategoryActivity extends AppCompatActivity {
@@ -12,6 +13,9 @@ public class AdminCategoryActivity extends AppCompatActivity {
     private ImageView fruitAndVege,meatAndFish, dairyAndEgg, bakery;
     private ImageView frozen, drinks, household, beauty;
     private ImageView toiletries, homeware, baby, pet;
+
+
+    private Button logoutBtn, checkOrdersBtn;
 
     @Override
     public void onBackPressed() {
@@ -39,6 +43,28 @@ public class AdminCategoryActivity extends AppCompatActivity {
         homeware = findViewById(R.id.homeware_pic);
         baby = findViewById(R.id.baby_pic);
         pet = findViewById(R.id.pet_pic);
+
+        logoutBtn = findViewById(R.id.admin_logout_btn);
+        checkOrdersBtn = findViewById(R.id.admin_check_orders_btn);
+
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminCategoryActivity.this,MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        checkOrdersBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminCategoryActivity.this,AdminNewOrdersActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 

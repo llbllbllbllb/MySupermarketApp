@@ -32,14 +32,17 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private int minteger = 1;
 
-    ;
 
     private Button addToCart;
 
     private ImageView productImage;
     private  TextView productPrice, productDescription, productName;
 
+    private String productPriceToStore;
+
     private String productID = "";
+
+    private String imgURL;
 
     private FloatingActionButton goToCart;
 
@@ -95,11 +98,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
         final HashMap<String,Object> cartMap = new HashMap<>();
         cartMap.put("pid",productID);
         cartMap.put("pname",productName.getText().toString());
-        cartMap.put("price",productPrice.getText().toString());
+        cartMap.put("price",productPriceToStore);
         cartMap.put("date",saveCurrentDate);
         cartMap.put("time",saveCurrentTime);
         cartMap.put("quantity",minteger);
         cartMap.put("discount","");
+        cartMap.put("image",imgURL);
 
         cartListRef.child("UserView").child(Prevalent.currentOnlineUser.getPhone()).child("Products").child(productID).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -122,6 +126,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         });
 
 
+
+
     }
 
     private void getProductDetail(String productID) {
@@ -135,7 +141,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                     productName.setText(product.getName());
                     productPrice.setText(product.getPrice() + " CAD");
+                    productPriceToStore = product.getPrice();
                     productDescription.setText(product.getDescription());
+                    imgURL = product.getImage();
                     Picasso.get().load(product.getImage()).into(productImage);
 
                 }

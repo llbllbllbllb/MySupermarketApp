@@ -1,5 +1,6 @@
 package com.libangliang.supermarket.ui.settings;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -27,6 +28,7 @@ import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.libangliang.supermarket.HomeActivity;
 import com.libangliang.supermarket.Prevalent.Prevalent;
 import com.libangliang.supermarket.R;
 import com.libangliang.supermarket.Settings;
@@ -62,8 +65,11 @@ public class SettingsFragment extends Fragment {
 
     private ProgressBar progressBar;
 
+    HomeActivity homeAct;
 
 
+
+    @SuppressLint("RestrictedApi")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         settingsViewModel =
@@ -110,6 +116,10 @@ public class SettingsFragment extends Fragment {
                         .start(getContext(),SettingsFragment.this);
             }
         });
+
+
+        homeAct = (HomeActivity) getActivity();
+        homeAct.fab.setVisibility(FloatingActionButton.INVISIBLE);
 
 
 

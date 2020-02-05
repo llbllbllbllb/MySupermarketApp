@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -54,6 +55,8 @@ public class HomeActivity extends AppCompatActivity {
     private TextView userProfileName;
     private CircleImageView userProfileImage;
 
+    public FloatingActionButton fab;
+
 
 
 
@@ -72,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
         MainActivity.getInstance().finish();
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -113,7 +116,10 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
+
     }
+
 
     public void DisplaySelectedScreen(NavController navController) {
 

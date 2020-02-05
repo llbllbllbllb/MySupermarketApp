@@ -1,5 +1,6 @@
 package com.libangliang.supermarket.ui.categories;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +13,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.libangliang.supermarket.HomeActivity;
 import com.libangliang.supermarket.R;
 
 public class CategoriesFragment extends Fragment {
 
     private CategoriesViewModel categoriesViewModel;
 
+    HomeActivity homeAct;
+
+    @SuppressLint("RestrictedApi")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         categoriesViewModel =
@@ -30,6 +36,9 @@ public class CategoriesFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        homeAct = (HomeActivity) getActivity();
+        homeAct.fab.setVisibility(FloatingActionButton.VISIBLE);
         return root;
     }
 }

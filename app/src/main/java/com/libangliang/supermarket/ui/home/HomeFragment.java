@@ -1,5 +1,6 @@
 package com.libangliang.supermarket.ui.home;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,8 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.libangliang.supermarket.HomeActivity;
 import com.libangliang.supermarket.Model.Products;
 import com.libangliang.supermarket.ProductDetailsActivity;
 import com.libangliang.supermarket.R;
@@ -33,9 +36,11 @@ public class HomeFragment extends Fragment {
 
     private DatabaseReference productRef;
     private RecyclerView recyclerView;
+    HomeActivity homeAct;
 
 
 
+    @SuppressLint("RestrictedApi")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -47,6 +52,9 @@ public class HomeFragment extends Fragment {
         recyclerView = root.findViewById(R.id.recycler_view_home);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+        homeAct = (HomeActivity) getActivity();
+        homeAct.fab.setVisibility(FloatingActionButton.VISIBLE);
 
 
 
