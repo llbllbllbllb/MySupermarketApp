@@ -15,7 +15,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
     private ImageView toiletries, homeware, baby, pet;
 
 
-    private Button logoutBtn, checkOrdersBtn;
+    private Button logoutBtn, checkOrdersBtn, editProductsBtn;
 
     @Override
     public void onBackPressed() {
@@ -46,6 +46,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
 
         logoutBtn = findViewById(R.id.admin_logout_btn);
         checkOrdersBtn = findViewById(R.id.admin_check_orders_btn);
+        editProductsBtn = findViewById(R.id.admin_edit_products_btn);
 
 
         logoutBtn.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +64,16 @@ public class AdminCategoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this,AdminNewOrdersActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        editProductsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminCategoryActivity.this,HomeActivity.class);
+                intent.putExtra("Admin","Admin");
+                startActivity(intent);
+                finish();
             }
         });
 

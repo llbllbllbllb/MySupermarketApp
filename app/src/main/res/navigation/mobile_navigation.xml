@@ -21,7 +21,7 @@
         android:id="@+id/nav_orders"
         android:name="com.libangliang.supermarket.ui.orders.OrdersFragment"
         android:label="@string/menu_orders"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_orders" />
 
     <fragment
         android:id="@+id/nav_categories"

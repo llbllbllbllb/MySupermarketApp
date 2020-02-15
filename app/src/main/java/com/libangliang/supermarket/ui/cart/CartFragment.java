@@ -57,6 +57,7 @@ public class CartFragment extends Fragment {
     private Button nextProcessBtn;
     private TextView totalAmount, empty_cart_msg;
 
+
     HomeActivity homeAct;
 
     private float totalPrice = 0;
@@ -305,7 +306,10 @@ public class CartFragment extends Fragment {
                 String subtotalStr = subtotal.getText().toString();
                 subtotalStr = subtotalStr.replaceAll("Subtotal: ", "");
                 subtotalStr = subtotalStr.replaceAll(" CAD", "");
-                totalPrice = totalPrice - Float.parseFloat(subtotalStr);
+
+                Float subtotal_minus = Float.parseFloat(subtotalStr);
+                subtotal_minus = Float.valueOf(String.format("%.2f",subtotal_minus));
+                totalPrice = totalPrice - subtotal_minus;
 
                 totalAmount.setText("Total Price: "+ String.format("%.2f",totalPrice) + " CAD");
                 checkEmptyCart();

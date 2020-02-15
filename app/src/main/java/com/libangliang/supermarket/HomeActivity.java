@@ -56,6 +56,9 @@ public class HomeActivity extends AppCompatActivity {
     private CircleImageView userProfileImage;
 
     public FloatingActionButton fab;
+    private String type = "";
+
+
 
 
 
@@ -65,11 +68,17 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if(bundle != null){
+            type = getIntent().getExtras().get("Admin").toString();
+        }
+
+
 
         Paper.init(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-//        toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
 
         MainActivity.getInstance().finish();
@@ -99,10 +108,20 @@ public class HomeActivity extends AppCompatActivity {
 
 
         View headerView = navigationView.getHeaderView(0);
+
+
         userProfileName = headerView.findViewById(R.id.user_profile_name);
-        userProfileName.setText(Prevalent.currentOnlineUser.getName());
+
         userProfileImage = headerView.findViewById(R.id.user_profile_image);
-        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).into(userProfileImage);
+
+        if(!type.equals("Admin")){
+            userProfileName.setText(Prevalent.currentOnlineUser.getName());
+            Picasso.get().load(Prevalent.currentOnlineUser.getImage()).into(userProfileImage);
+        }
+        else{
+            userProfileName.setText("Admin");
+        }
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

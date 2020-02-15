@@ -94,20 +94,21 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calForDate.getTime());
 
-        final DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(Prevalent.currentOnlineUser.getPhone()).child(saveCurrentDate+saveCurrentTime);
+        final DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders").child("Not Shipped").child(saveCurrentDate+saveCurrentTime);
         HashMap<String,Object> ordersMap = new HashMap<>();
 
         final DatabaseReference getProductRef = FirebaseDatabase.getInstance().getReference().child("CartList").child("UserView").child(Prevalent.currentOnlineUser.getPhone()).child("Products");
-
+        totalAmount = String.format("%.2f",Float.valueOf(totalAmount));
         ordersMap.put("orderid",saveCurrentDate+saveCurrentTime);
         ordersMap.put("totalAmount",totalAmount);
+        ordersMap.put("userid",Prevalent.currentOnlineUser.getPhone());
         ordersMap.put("name",nameEditText.getText().toString());
         ordersMap.put("phone",phoneEditText.getText().toString());
         ordersMap.put("address",addressEditText.getText().toString());
         ordersMap.put("city",cityEditText.getText().toString());
         ordersMap.put("date",saveCurrentDate);
         ordersMap.put("time",saveCurrentTime);
-        ordersMap.put("state","not shipped");
+        ordersMap.put("state","Not Shipped");
 
 
         ordersRef.updateChildren(ordersMap).addOnCompleteListener(new OnCompleteListener<Void>() {

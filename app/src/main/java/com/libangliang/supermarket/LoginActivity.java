@@ -84,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginButton.setText("Login");
                 adminLink.setVisibility(TextView.VISIBLE);
                 notAdminLink.setVisibility(TextView.INVISIBLE);
+                login_text.setText("Login");
                 parentDBName = "Users";
             }
         });
@@ -142,6 +143,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this,"Admin Login Successfully.",Toast.LENGTH_SHORT).show();
                                 //send user to home activity
                                 Intent intent = new Intent(LoginActivity.this,AdminCategoryActivity.class);
+//                                Prevalent.currentOnlineUser = userData;
                                 startActivity(intent);
                                 finish();
 

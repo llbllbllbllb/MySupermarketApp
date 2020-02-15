@@ -31,7 +31,7 @@
         android:layout_below="@+id/slogan_category"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         >
 
         <LinearLayout
@@ -405,6 +405,22 @@
 
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/admin_edit_products_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_solid"
+        android:text="Edit Existing Products"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_above="@+id/admin_check_orders_btn"
+        android:layout_marginBottom="10dp"
+        />
 
     <Button
         android:id="@+id/admin_check_orders_btn"

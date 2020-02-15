@@ -19,12 +19,65 @@
         android:tag="home_disable_back_button"/>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_home"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/search_bar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:layout_centerVertical="true">
+
+                <EditText
+                    android:id="@+id/search_input"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Search"
+                    android:background="@drawable/button_hollow"
+                    android:padding="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    />
+
+                <ImageButton
+                    android:id="@+id/search_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/search"
+                    android:layout_toRightOf="@+id/search_input"
+                    android:background="@null"
+                    android:padding="10dp"
+                    android:layout_marginLeft="5dp"
+
+                    />
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_below="@+id/search_bar_layout">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+        </LinearLayout>
+
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
 
 
 
