@@ -38,6 +38,14 @@ public class OrderProductsDetailActivity extends AppCompatActivity {
 
     private String orderid, status;
 
+    private FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        adapter.stopListening();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +106,7 @@ public class OrderProductsDetailActivity extends AppCompatActivity {
 
         FirebaseRecyclerOptions<Cart> options = new FirebaseRecyclerOptions.Builder<Cart>().setQuery(ordersRef.child("Products"),Cart.class).build();
 
-        FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull Cart model) {
                 holder.txtProductQuantity.setText("×"+Integer.toString(model.getQuantity()));

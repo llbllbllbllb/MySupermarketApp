@@ -140,6 +140,17 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
                     holder.admin_order_btn1.setText("Product List");
                     holder.admin_order_btn2.setText("Ready to ship");
 
+                    holder.admin_order_btn1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // check product list
+                            Intent intent = new Intent(AdminNewOrdersActivity.this, OrderProductsDetailActivity.class);
+                            intent.putExtra("orderid",model.getOrderid());
+                            intent.putExtra("status",model.getState());
+                            startActivity(intent);
+                        }
+                    });
+
                     holder.admin_order_btn2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -148,6 +159,46 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
                         }
                     });
                 }
+
+                else if(selectedTab == "Shipped"){
+                    holder.admin_order_btn1.setText("Move to not shipped");
+                    holder.admin_order_btn2.setText("Delivered");
+
+                    holder.admin_order_btn1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ordersRef.child(model.getState()).child(model.getOrderid()).child("state").setValue("Not Shipped");
+                            removeFromFirebase(ordersRef.child(model.getState()), ordersRef.child("Not Shipped"), model.getOrderid());
+                        }
+                    });
+
+                    holder.admin_order_btn2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ordersRef.child(model.getState()).child(model.getOrderid()).child("state").setValue("Delivered");
+                            removeFromFirebase(ordersRef.child(model.getState()), ordersRef.child("Delivered"), model.getOrderid());
+                        }
+                    });
+
+
+                }
+
+                else if(selectedTab == "Delivered"){
+                    holder.admin_order_btn1.setText("Move to shipped");
+                    holder.admin_order_btn2.setVisibility(View.INVISIBLE);
+
+                    holder.admin_order_btn1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ordersRef.child(model.getState()).child(model.getOrderid()).child("state").setValue("Shipped");
+                            removeFromFirebase(ordersRef.child(model.getState()), ordersRef.child("Shipped"), model.getOrderid());
+                        }
+                    });
+
+
+                }
+
+
 
 
 
