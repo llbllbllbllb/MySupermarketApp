@@ -38,12 +38,14 @@ public class OrderProductsDetailActivity extends AppCompatActivity {
 
     private String orderid, status;
 
+    ValueEventListener listener;
+
     private FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter;
 
     @Override
     protected void onPause() {
         super.onPause();
-        adapter.stopListening();
+        ordersRef.removeEventListener(listener);
     }
 
     @Override
@@ -75,7 +77,7 @@ public class OrderProductsDetailActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        ordersRef.addValueEventListener(new ValueEventListener() {
+        listener = ordersRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Orders orders = dataSnapshot.getValue(Orders.class);
